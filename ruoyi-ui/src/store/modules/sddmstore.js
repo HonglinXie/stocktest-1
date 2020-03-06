@@ -1,4 +1,7 @@
-import {getsdkversion_api} from '../../api/sddm/index'
+import {
+  getsdkversion_api,
+  delByid_api
+} from '../../api/sddm/index'
 //  自动化测试平台添加
 
 const state = {
@@ -30,7 +33,14 @@ const actions = {
        // console.log(response)
        context.commit('GET_SDKVERSION',response)
      })
-  }
+   },
+
+     delById_action(context, param){
+     console.log(param)
+       const res = delByid_api(param)
+
+     }
+
 }
 
 export default {

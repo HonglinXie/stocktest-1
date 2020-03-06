@@ -5,7 +5,7 @@ import axios from 'axios'
 export default function ajax(url, data={},type='GET') {
     return new Promise(function (resolve,reject) {
         let promise
-        if(type === 'GET'){
+        if(type.toUpperCase() === 'GET'){
             let params = ''
             for(let index in data){
                 params += index + '=' + data[index] + '&'
@@ -15,8 +15,15 @@ export default function ajax(url, data={},type='GET') {
                 url += params
             }
             promise = axios.get(url)
-        }else{
+        }
+        else if(type.toUpperCase() === 'POST'){
             promise = axios.post(url)
+        }
+        else if(type.toUpperCase() === 'DELETE'){
+          promise = axios.delete(url)
+        }
+        else if(type.toUpperCase() === 'PUT'){
+          promise = axios.put(url)
         }
         //获取返回结果的数据
         promise.then(function (response) {
